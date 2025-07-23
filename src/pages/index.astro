@@ -1,0 +1,171 @@
+---
+import "../styles/global.css";
+import { Badge } from "@/components/ui/badge.tsx";
+import Layout from "../layouts/main.astro";
+import { education, experience, projects, toolsAndSkills } from "@/data/cvData";
+---
+
+<Layout title="Astro + Tailwind CSS">
+    <div>
+        {/* Education */}
+        <div class="mb-8">
+            <h1 class="text-2xl mb-4">Education</h1>
+            <ul>
+                {
+                    education.map((entry, index) => (
+                        <li class="mb-2 flex">
+                            {/* Left block: every detail except the date */}
+                            <div class="flex-1">
+                                <p class="font-bold">{entry.institution}</p>
+                                <p class="text-sm text-neutral-600">
+                                    {entry.degree}
+                                </p>
+                                <p class="text-sm text-neutral-600">
+                                    {entry.description}
+                                </p>
+                            </div>
+
+                            {/* Right block: the date only */}
+                            <span class="text-sm text-right">
+                                <p>from {entry.dateRange[0]}</p>
+                                <p>to {entry.dateRange[1]}</p>
+                            </span>
+                        </li>
+                    ))
+                }
+            </ul>
+        </div>
+        {/* Experience */}
+        <div class="mb-8">
+            <h1 class="text-2xl mb-4">Experience</h1>
+            <ul>
+                {
+                    experience.map((entry, index) => (
+                        <li class="mb-2 flex">
+                            {/* Left block: details except the date */}
+                            <div class="flex-1">
+                                <p class="font-bold flex items-center gap-1">
+                                    {entry.label}
+                                    {entry.tools &&
+                                        entry.tools.map((tool) => (
+                                            <img
+                                                src={`/tools/${tool}.svg`}
+                                                alt={tool}
+                                                width={16}
+                                                height={16}
+                                                style={{
+                                                    display: "inline-block",
+                                                }}
+                                            />
+                                        ))}
+                                </p>
+                                <p class="text-sm text-neutral-600">
+                                    {entry.description}
+                                </p>
+                                {entry.link && (
+                                    <a
+                                        href={entry.link.url}
+                                        class="text-sm text-blue-500 hover:underline"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        {entry.link.label || "View More"}
+                                    </a>
+                                )}
+                            </div>
+                            {/* Right block: the date range */}
+                            <span class="text-sm text-right min-w-[100px] flex flex-col justify-center items-end">
+                                <p>from {entry.dateRange[0]}</p>
+                                <p>to {entry.dateRange[1]}</p>
+                            </span>
+                        </li>
+                    ))
+                }
+            </ul>
+        </div>
+        {/* Projects */}
+        <div class="mb-8">
+            <h1 class="text-2xl mb-4">Projects</h1>
+            <ul>
+                {
+                    projects.map((project, index) => (
+                        <li class="mb-2 flex">
+                            {/* Left block: details except the date */}
+                            <div class="flex-1">
+                                <p class="font-bold flex items-center gap-1">
+                                    <span>{project.label}</span>
+                                    {project.tools &&
+                                        project.tools.map((tool) => (
+                                            <img
+                                                src={`/tools/${tool}.svg`}
+                                                alt={tool}
+                                                width={16}
+                                                height={16}
+                                                style={{
+                                                    display: "inline-block",
+                                                }}
+                                            />
+                                        ))}
+                                </p>
+                                <p class="text-sm text-neutral-600">
+                                    {project.description}
+                                </p>
+                                {project.link && (
+                                    <a
+                                        href={project.link.url}
+                                        class="text-sm text-blue-500 hover:underline"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        {project.link.label || "View Project"}
+                                    </a>
+                                )}
+                            </div>
+                            {/* Right block: the date only */}
+                            <span class="text-sm text-right min-w-[100px] flex flex-col justify-center items-end">
+                                <p>{project.date}</p>
+                            </span>
+                        </li>
+                    ))
+                }
+            </ul>
+        </div>
+
+        {/* Tools & Skills */}
+        <div class="mb-8">
+            <h1 class="text-2xl mb-4">Tools & Skills</h1>
+            <div
+                class="grid grid-cols-[minmax(100px,150px)_1fr] gap-x-2 gap-y-2"
+            >
+                {/* Tools Row */}
+                <div class="text-right font-bold">Tools:</div>
+                <div class="flex flex-wrap gap-2 items-center">
+                    {
+                        toolsAndSkills.tools.map((tool) => (
+                            <Badge
+                                key={tool.slug}
+                                variant="secondary"
+                                className="flex items-center gap-1 px-2 py-1"
+                            >
+                                <img
+                                    src={`/tools/${tool.slug}.svg`}
+                                    alt={tool.label}
+                                    width={16}
+                                    height={16}
+                                    style={{ display: "inline-block" }}
+                                />
+                                <span>{tool.label}</span>
+                            </Badge>
+                        ))
+                    }
+                </div>
+                {/* Skills Row */}
+                <div class="text-right font-bold">Skills:</div>
+                <div>{toolsAndSkills.skills.join(", ")}</div>
+                {/* Languages Row */}
+                <div class="text-right font-bold">Languages:</div>
+                <div>{toolsAndSkills.langDescription}</div>
+            </div>
+        </div>
+    </div>
+</Layout>

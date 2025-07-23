@@ -1,0 +1,19 @@
+---
+import "@/styles/global.css";
+const { content } = Astro.props;
+
+import Navbar from "@/components/layout/navbar";
+---
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="icon" href="/favicon.ico" type="image/svg+xml" />
+        <!-- <title>{content.title}</title> -->
+    </head>
+    <body class="max-w-4xl mx-auto">
+        <Navbar />
+        <slot />
+    </body>
+</html>
