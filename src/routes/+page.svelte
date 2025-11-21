@@ -99,7 +99,7 @@
 						{#if item.type === 'tools'}
 							<div class="flex flex-wrap gap-1">
 								{#each item.value as tool}
-									<Badge variant="outline">
+									<Badge variant="secondary">
 										<img src={`/icons/${tool}.svg`} alt={getToolLabel(tool)} class="h-3 w-3" />
 										<p>{getToolLabel(tool)}</p>
 									</Badge>
