@@ -99,10 +99,10 @@ export const cvData: CVData = {
 			name: "Master's Thesis in Neural Network Merging",
 			description: 'Enhanced linear merging methods with improved the SoTA accuracy up to 7%.',
 			technologies: ['python', 'pytorch', 'transformers'],
-			link: {
-				text: 'View in PDF',
-				url: '/docs/master-thesis.pdf'
-			},
+			// link: {
+			// 	text: 'View in PDF',
+			// 	url: '/docs/master-thesis.pdf'
+			// },
 			date: 'Sep. 2024'
 		},
 		{

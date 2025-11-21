@@ -1,5 +1,6 @@
 <script lang="ts">
 	import '../app.css';
+	import '@hackernoon/pixel-icon-library/fonts/iconfont.css';
 	import favicon from '$lib/assets/favicon.svg';
 	import Navbar from '$lib/components/navbar.svelte';
 	import { ModeWatcher } from 'mode-watcher';
