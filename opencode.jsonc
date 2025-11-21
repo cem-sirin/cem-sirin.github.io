@@ -29,6 +29,10 @@
                 "@sveltejs/mcp"
             ],
             "enabled": false
+        },
+        "gh_grep": {
+            "type": "remote",
+            "url": "https://mcp.grep.app"
         }
     }
 }

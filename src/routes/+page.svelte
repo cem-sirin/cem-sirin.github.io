@@ -1,6 +1,10 @@
 <script lang="ts">
-	import { cvData } from '$lib/data/cv';
+	import { cvData, toolMap } from '$lib/data/cv';
 	import Badge from '$lib/components/ui/badge/badge.svelte';
+
+	function getToolLabel(toolSlug: string): string {
+		return toolMap[toolSlug] || toolSlug;
+	}
 </script>
 
 <div>
@@ -35,7 +39,7 @@
 							<h2>{exp.title}</h2>
 							{#each exp.technologies as tech}
 								<Badge variant="secondary">
-									<img src={`/icons/${tech}.svg`} alt={tech} class="h-3 w-3" />
+									<img src={`/icons/${tech}.svg`} alt={getToolLabel(tech)} class="h-3 w-3" />
 								</Badge>
 							{/each}
 						</div>
@@ -64,7 +68,7 @@
 							<h2>{project.name}</h2>
 							{#each project.technologies as tech}
 								<Badge variant="secondary">
-									<img src={`/icons/${tech}.svg`} alt={tech} class="h-3 w-3" />
+									<img src={`/icons/${tech}.svg`} alt={getToolLabel(tech)} class="h-3 w-3" />
 								</Badge>
 							{/each}
 						</div>
@@ -96,8 +100,8 @@
 							<div class="flex flex-wrap gap-1">
 								{#each item.value as tool}
 									<Badge variant="outline">
-										<img src={`/icons/${tool.toLowerCase()}.svg`} alt={tool} class="h-3 w-3" />
-										<p>{tool}</p>
+										<img src={`/icons/${tool}.svg`} alt={getToolLabel(tool)} class="h-3 w-3" />
+										<p>{getToolLabel(tool)}</p>
 									</Badge>
 								{/each}
 							</div>

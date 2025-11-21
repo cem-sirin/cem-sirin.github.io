@@ -20,3 +20,5 @@ We are building my personal cv/blog page. We will deploy it on github pages so w
 3. When user asks to plan something, always add a section called "Files to modify/create/delete" to your plan
 4. If user does not explicitly tell you to style something, never ever add a single character of style to the code. The user will always explicitly ask for styling. For example:
   - if you are asked to add a Navbar, just use the correct shadcn components and add it to the main layout. Funtionality first. User needs to see the navbar and may ask for styling later.
+
+If you are unsure how to do something, use `gh_grep` to search code examples from github.

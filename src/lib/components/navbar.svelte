@@ -10,8 +10,8 @@
 	import ThemeToggle from '$lib/components/theme-toggle.svelte';
 
 	const navLinks = [
-		{ href: '/', icon: 'file-text', text: 'CV' },
-		{ href: '/blog', icon: 'book', text: 'Blog' }
+		{ href: '/', text: 'CV' },
+		{ href: '/blog', text: 'Blog' }
 	];
 </script>
 
@@ -25,10 +25,7 @@
 			{#each navLinks as link}
 				<NavigationMenuItem>
 					<NavigationMenuLink href={link.href}>
-						<div class="flex items-center gap-2">
-							<PixelIcon name={link.icon} size="16px" />
-							{link.text}
-						</div>
+						{link.text}
 					</NavigationMenuLink>
 				</NavigationMenuItem>
 			{/each}

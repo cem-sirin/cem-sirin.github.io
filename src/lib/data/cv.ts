@@ -1,5 +1,25 @@
 import type { CVData } from '$lib/types/cv';
 
+export const toolMap: Record<string, string> = {
+	python: 'Python',
+	pytorch: 'PyTorch',
+	tensorflow: 'TensorFlow',
+	mlx: 'MLX',
+	transformers: 'Transformers',
+	pandas: 'Pandas',
+	numpy: 'NumPy',
+	opencv: 'OpenCV',
+	statsmodels: 'statsmodels',
+	networkx: 'NetworkX',
+	streamlit: 'Streamlit',
+	java: 'Java',
+	r: 'R',
+	matlab: 'MATLAB',
+	qgis: 'QGIS',
+	nuxtjs: 'Nuxt.js',
+	cloudflare: 'Cloudflare'
+};
+
 export const cvData: CVData = {
 	education: [
 		{
@@ -57,7 +77,7 @@ export const cvData: CVData = {
 			name: '123offerte.it',
 			description:
 				'Website built with a custom AI research algorithm that extracts structured subscription plans from unstructured data.',
-			technologies: ['python', 'nextjs', 'cloudflare'],
+			technologies: ['python', 'nuxtjs', 'cloudflare'],
 			link: {
 				text: 'Visit Website',
 				url: 'https://123offerte.it/'
@@ -136,23 +156,23 @@ export const cvData: CVData = {
 
 	toolsSection: {
 		tools: [
-			'Python',
-			'PyTorch',
-			'TensorFlow',
-			'MLX',
-			'Transformers',
-			'Pandas',
-			'NumPy',
-			'OpenCV',
+			'python',
+			'pytorch',
+			'tensorflow',
+			'mlx',
+			'transformers',
+			'pandas',
+			'numpy',
+			'opencv',
 			'statsmodels',
-			'NetworkX',
-			'Streamlit',
-			'Java',
-			'R',
-			'MATLAB',
-			'QGIS',
-			'Next.js',
-			'Cloudflare'
+			'networkx',
+			'streamlit',
+			'java',
+			'r',
+			'matlab',
+			'qgis',
+			'nuxtjs',
+			'cloudflare'
 		],
 		skills: [
 			'Artificial Intelligence',

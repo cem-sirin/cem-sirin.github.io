@@ -8,6 +8,7 @@
 </script>
 
 <svelte:head>
+	<title>Cem Şirin - Personal Page</title>
 	<link rel="icon" href={favicon} />
 </svelte:head>
 
