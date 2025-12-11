@@ -29,7 +29,7 @@ During the trap session buyers keep paying the maximum price until their utility
 
 Thus, rather than having a single timeline, we can have an auction with cascading sessions. Let's continue with the visualization for a better understanding.
 
-Here's an interactive visualization of the timeline schedule proposed by Baverman. You can adjust the epsilon parameter to see how it affects the number of arms and the distribution of sessions.
+Here's an interactive visualization of the timeline schedule proposed by Baverman. You can adjust the epsilon parameter to see how it affects the number of arms and the distribution of sessions, and the value parameter to see when the buyers are exhausted (i.e., switch arms).
 
 <Timeline />
 
