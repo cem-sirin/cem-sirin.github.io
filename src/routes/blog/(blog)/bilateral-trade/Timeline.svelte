@@ -14,6 +14,8 @@
 	let tooltipVisible = $state(false);
 	let tooltipX = $state(0);
 	let tooltipY = $state(0);
+	let v = $state(0.5);
+	const v1 = 0.1;
 
 	// Timeline dimensions
 	const armHeight = 25;
@@ -24,7 +26,7 @@
 	// Calculate derived parameters
 	const params = $derived.by(() => {
 		const rho = Math.min(1 - epsilon / 2, 0.95);
-		const delta = (1 - rho) / (1 - 0.1);
+		const delta = (1 - rho) / (1 - v1);
 		const n = Math.ceil(Math.log(epsilon / 2) / Math.log(1 - delta));
 		return { rho, delta, n };
 	});
@@ -72,13 +74,25 @@
 			<input
 				id="epsilon"
 				type="range"
-				min="0.1"
+				min="0.05"
 				max="0.5"
 				step="0.05"
 				bind:value={epsilon}
 				class="h-2 flex-1 cursor-pointer appearance-none rounded-lg bg-muted"
 			/>
 			<span class="min-w-12 font-mono text-sm">{epsilon.toFixed(2)}</span>
+
+			<label for="v" class="ml-4 text-sm font-medium"> v: </label>
+			<input
+				id="v"
+				type="range"
+				min={v1}
+				max="1"
+				step="0.01"
+				bind:value={v}
+				class="h-2 flex-1 cursor-pointer appearance-none rounded-lg bg-muted"
+			/>
+			<span class="min-w-12 font-mono text-sm">{v.toFixed(2)}</span>
 		</div>
 
 		<div class="rounded-md bg-muted/50 p-4 font-mono text-sm">
@@ -106,6 +120,9 @@
 					{@const sessions = calculateSessionLengths(i, params.rho, params.delta)}
 					{@const y = 20 + i * (armHeight + armSpacing)}
 					{@const currentX = marginLeft}
+					{@const Bj_offset = (Math.min(v, params.rho) / (1 - v1)) * sessions.honeymoon}
+					{@const Bj_rounds = sessions.null + sessions.honeymoon + Bj_offset}
+					{@const Bj_x = marginLeft + (Bj_rounds / totalRounds) * timelineWidth}
 
 					<!-- Arm label -->
 					<text
@@ -199,6 +216,19 @@
 								onmouseleave={hideTooltip}
 							/>
 						{/if}
+
+						<!-- Bj marker -->
+						<line
+							x1={Bj_x}
+							y1={y - 2}
+							x2={Bj_x}
+							y2={y + armHeight + 2}
+							stroke="var(--color-foreground)"
+							stroke-width="2"
+							stroke-dasharray="2 2"
+							class="pointer-events-none opacity-70"
+						/>
+						<circle cx={Bj_x} cy={y - 2} r="2" fill="var(--color-foreground)" class="pointer-events-none" />
 					</g>
 				{/each}
 			</svg>
@@ -228,6 +258,22 @@
 					style="background-color: var(--color-chart-1)"
 				></div>
 				<span class="text-sm">Trap (1/0 prices)</span>
+			</div>
+			<div class="flex items-center gap-2">
+				<svg width="14" height="20" class="text-foreground">
+					<line
+						x1="7"
+						y1="2"
+						x2="7"
+						y2="18"
+						stroke="currentColor"
+						stroke-width="2"
+						stroke-dasharray="2 2"
+						class="opacity-70"
+					/>
+					<circle cx="7" cy="2" r="2" fill="currentColor" />
+				</svg>
+				<span class="text-sm">Exhaust time (B_j(v))</span>
 			</div>
 		</div>
 	</div>
