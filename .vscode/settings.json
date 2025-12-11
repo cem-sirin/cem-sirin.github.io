@@ -1,0 +1,9 @@
+// .vscode/settings.json
+{
+	"files.associations": {
+		"*.svx": "svelte"
+	},
+	"[svelte]": {
+		"editor.wordWrap": "on"
+	}
+}

@@ -18,6 +18,15 @@
 		})
 		.filter((post) => post.slug)
 		.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
+	function formatDate(date: string | Date) {
+		if (!date) return '';
+		return new Date(date).toLocaleDateString('en-GB', {
+			day: 'numeric',
+			month: 'short',
+			year: 'numeric'
+		});
+	}
 </script>
 
 <div>
@@ -27,7 +36,7 @@
 				<h2>
 					<a href="/blog/{post.slug}">{post.title}</a>
 				</h2>
-				<p class="text-sm text-muted-foreground">{post.date}</p>
+				<p class="text-sm text-muted-foreground">{formatDate(post.date)}</p>
 				<p>{post.description}</p>
 			</article>
 		{:else}

@@ -52,17 +52,17 @@ export const cvData: CVData = {
 			startDate: 'Nov. 2025',
 			endDate: 'Present'
 		},
-		{
-			title: 'Data Science Researcher',
-			description: 'Game Theory models for online ad auctions under Prof. Stefano Leonardi.',
-			technologies: ['python', 'streamlit', 'numpy'],
-			link: {
-				text: 'View Project',
-				url: 'https://regret-minimizing-agents.streamlit.app/'
-			},
-			startDate: 'Oct. 2024',
-			endDate: 'Jan. 2025'
-		},
+		// {
+		// 	title: 'Data Science Researcher',
+		// 	description: 'Game Theory models for online ad auctions under Prof. Stefano Leonardi.',
+		// 	technologies: ['python', 'streamlit', 'numpy'],
+		// 	link: {
+		// 		text: 'View Project',
+		// 		url: 'https://regret-minimizing-agents.streamlit.app/'
+		// 	},
+		// 	startDate: 'Oct. 2024',
+		// 	endDate: 'Jan. 2025'
+		// },
 		{
 			title: 'Teaching Assistant @ Erasmus University Rotterdam',
 			description: 'TA for the courses Combinatorial Optimization and Stochastic Simulation.',

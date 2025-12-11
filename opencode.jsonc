@@ -1,38 +1,31 @@
 {
-    "$schema": "https://opencode.ai/config.json",
-    "mcp": {
-        "playwright-mcp": {
-            "type": "local",
-            "command": [
-                "bunx",
-                "@playwright/mcp@latest",
-                "--executable-path",
-                "/Applications/Opera.app/Contents/MacOS/Opera",
-                "--extension"
-            ],
-            "enabled": false
-        },
-        "context7-mcp": {
-            "type": "local",
-            "command": [
-                "bunx",
-                "-y",
-                "@upstash/context7-mcp"
-            ],
-            "enabled": false
-        },
-        "svelte-mcp": {
-            "type": "local",
-            "command": [
-                "bunx",
-                "-y",
-                "@sveltejs/mcp"
-            ],
-            "enabled": false
-        },
-        "gh_grep": {
-            "type": "remote",
-            "url": "https://mcp.grep.app"
-        }
-    }
+	"$schema": "https://opencode.ai/config.json",
+	"mcp": {
+		"playwright-mcp": {
+			"type": "local",
+			"command": [
+				"bunx",
+				"@playwright/mcp@latest",
+				"--executable-path",
+				"/Applications/Opera.app/Contents/MacOS/Opera",
+				"--extension"
+			],
+			"enabled": false
+		},
+		"context7-mcp": {
+			"type": "local",
+			"command": ["bunx", "-y", "@upstash/context7-mcp"],
+			"enabled": false
+		},
+		"svelte-mcp": {
+			"type": "local",
+			"command": ["bunx", "-y", "@sveltejs/mcp"],
+			"enabled": true
+		},
+		"gh_grep": {
+			"type": "remote",
+			"url": "https://mcp.grep.app",
+			"enabled": false
+		}
+	}
 }

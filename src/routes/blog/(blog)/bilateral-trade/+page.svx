@@ -1,0 +1,49 @@
+---
+title: Mean-based Learners in Bilateral Trade
+date: 2025-12-11
+---
+
+
+<script>
+	import MathBlock from '$lib/components/math/MathBlock.svelte';
+	import MathInline from '$lib/components/math/MathInline.svelte';
+	import Timeline from './Timeline.svelte';
+
+	const math1 = `\\max_{\\pi_b, \\pi_s} \\mathbb{E} [\\text{GFT}_t] = \\mathbb{E}[(v_b - v_s) \\cdot \\mathbb{I}\\{v_b > \\pi_b, v_s < \\pi_s\\}]`;
+	const math2 = `(\\pi_b - \\pi_s) \\mathbb{I} \\{v_b > \\pi_b, v_s < \\pi_s\\}`;
+	const math3 = `v_b - v_s > \\pi_b - \\pi_s`;
+</script>
+
+
+## Intuition on Theorem 3.1
+
+Baverman et al. 2018 tricks mean-based learning buyer by a strategy that has 2 sessions.
+
+- Session 0 (Honeymoon): In this session buyers accumulate utility by buying the item for a fixed-price (or free).
+- Session 1 (Trap): The seller starts charging the maximum price (=1).
+
+During the trap session buyers keep paying the maximum price until their utility turns negative (exhausted). There are 2 key problems that can cause the seller to not extract the entire welfare.
+
+1. Buyers with lower valuation will be exhausted early. A longer honeymoon session would have been optimal for them.
+2. The auction may end before exhausting buyers with higher valuation. A longer trap session would have been optimal for them.
+
+Thus, rather than having a single timeline, we can have an auction with cascading sessions. Let's continue with the visualization for a better understanding.
+
+Here's an interactive visualization of the timeline schedule proposed by Baverman. You can adjust the epsilon parameter to see how it affects the number of arms and the distribution of sessions.
+
+<Timeline />
+
+Here, they introduce a 3rd session, that is the ∅ Session, where basically no trade happens. The intuition is that, buyers start playing Arm 1. Those who are exhausted in the trap session of Arm 1, will move on to the honeymoon session of Arm 2, and so on.
+
+
+## Bilateral Trade
+
+If we want to build a similar logic to Baverman et al., we would want to set honeymoon prices π* such that
+
+<MathBlock latex={math1} />
+
+we should be setting the optimal honeymoon prices. 
+
+Note that, the optimal monopoly Myerson pricing maximizes <MathInline latex={math2} />, thus a strategy that extracts the entire welfare is always greater than to this expression since <MathInline latex={math3} /> when trade occurs.
+
+
