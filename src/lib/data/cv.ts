@@ -123,7 +123,7 @@ export const cvData: CVData = {
 			technologies: ['python', 'tensorflow', 'transformers'],
 			link: {
 				text: 'View Notebook',
-				url: '/neural-image-geolocation.ipynb'
+				url: 'https://github.com/cem-sirin/cem-sirin.github.io/blob/main/static/neural-image-geolocation.ipynb'
 			},
 			date: 'Feb. 2024'
 		},
