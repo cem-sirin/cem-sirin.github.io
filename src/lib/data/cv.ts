@@ -99,10 +99,10 @@ export const cvData: CVData = {
 			name: "Master's Thesis in Neural Network Merging",
 			description: 'Enhanced linear merging methods with improved the SoTA accuracy up to 7%.',
 			technologies: ['python', 'pytorch', 'transformers'],
-			// link: {
-			// 	text: 'View in PDF',
-			// 	url: '/docs/master-thesis.pdf'
-			// },
+			link: {
+				text: 'View in PDF',
+				url: '/thesis.pdf'
+			},
 			date: 'Sep. 2024'
 		},
 		{
@@ -121,6 +121,10 @@ export const cvData: CVData = {
 			description:
 				'Multimodal transformer for predicting coordinates of street level images with novel contrastive learning and PEFT.',
 			technologies: ['python', 'tensorflow', 'transformers'],
+			link: {
+				text: 'View Notebook',
+				url: '/neural-image-geolocation.ipynb'
+			},
 			date: 'Feb. 2024'
 		},
 		{
