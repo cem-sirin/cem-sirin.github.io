@@ -9,14 +9,16 @@
 </script>
 
 <svelte:head>
-	<title>Cem Şirin - Personal Page</title>
+	<title>Cem Sirin</title>
 	<link rel="icon" href={favicon} />
+	<meta name="author" content="Cem Sirin" />
+	<meta name="theme-color" content="#ffffff" />
 </svelte:head>
 
 <ModeWatcher />
 
 <Navbar />
 
-<div class="mt-16 p-8">
+<div class="mx-auto mt-16 max-w-3xl px-5 py-8 md:px-8">
 	{@render children()}
 </div>

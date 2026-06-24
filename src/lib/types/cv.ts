@@ -1,15 +1,18 @@
-export interface Education {
-	institution: string;
+export interface EducationItem {
 	degree: string;
 	details?: string;
 	startDate: string;
 	endDate: string;
 }
 
+export interface Education {
+	institution: string;
+	items: EducationItem[];
+}
+
 export interface Experience {
 	title: string;
 	description: string;
-	technologies?: string[];
 	link?: {
 		text: string;
 		url: string;
@@ -18,10 +21,20 @@ export interface Experience {
 	endDate: string;
 }
 
+export interface Publication {
+	title: string;
+	authors: string;
+	venue: string;
+	date: string;
+	link?: {
+		text: string;
+		url: string;
+	};
+}
+
 export interface Project {
 	name: string;
 	description: string;
-	technologies: string[];
 	link?: {
 		text: string;
 		url: string;
@@ -29,15 +42,9 @@ export interface Project {
 	date: string;
 }
 
-export interface ToolsSection {
-	tools: string[];
-	skills: string[];
-	languages: string;
-}
-
 export interface CVData {
 	education: Education[];
+	publications: Publication[];
 	experience: Experience[];
 	projects: Project[];
-	toolsSection: ToolsSection;
 }

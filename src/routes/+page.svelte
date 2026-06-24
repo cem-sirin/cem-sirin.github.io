@@ -1,146 +1,156 @@
 <script lang="ts">
-	import { cvData, toolMap } from '$lib/data/cv';
-	import Badge from '$lib/components/ui/badge/badge.svelte';
+	import { ExternalLink, FileText, Newspaper } from '@lucide/svelte';
+	import { Button } from '$lib/components/ui/button';
 
-	function getToolLabel(toolSlug: string): string {
-		return toolMap[toolSlug] || toolSlug;
-	}
+	const siteUrl = 'https://cem-sirin.github.io';
+	const publicationUrl = 'https://icml.cc/virtual/2026/poster/65182';
+	const publicationAuthors = [
+		'Riccardo Colini Baldeschi',
+		'Simone Di Gregorio',
+		'Simone Fioravanti',
+		'Federico Fusco',
+		'Ido Guy',
+		'Daniel Haimovich',
+		'Stefano Leonardi',
+		'Fridolin Linder',
+		'Lorenzo Perini',
+		'Matteo Russo',
+		'Cem Sirin',
+		'Niek Tax'
+	];
+	const publicationAuthorsBeforeMe = publicationAuthors.slice(0, -2).join(', ');
+	const publicationAuthorsAfterMe = publicationAuthors.at(-1);
+	const avatarSrc = '/images/cem-avatar.jpg';
+	const avatarUrl = `${siteUrl}${avatarSrc}`;
+
+	const jsonLd = {
+		'@context': 'https://schema.org',
+		'@type': 'Person',
+		name: 'Cem Sirin',
+		alternateName: 'Cem Şirin',
+		url: siteUrl,
+		image: avatarUrl,
+		jobTitle: 'PhD student in Data Science',
+		affiliation: {
+			'@type': 'CollegeOrUniversity',
+			name: 'Sapienza University of Rome'
+		},
+		advisor: {
+			'@type': 'Person',
+			name: 'Stefano Leonardi',
+			url: 'https://sites.google.com/a/uniroma1.it/stefanoleonardi-eng/home'
+		},
+		sameAs: ['https://github.com/cem-sirin', 'https://www.linkedin.com/in/cem-sirin/'],
+		knowsAbout: [
+			'Algorithmic Game Theory',
+			'Machine Learning',
+			'Algorithmic Decision Making',
+			'Econometrics',
+			'Matching'
+		],
+		subjectOf: [
+			{
+				'@type': 'ScholarlyArticle',
+				name: 'Multicalibration Yields Better Matchings',
+				url: publicationUrl,
+				author: publicationAuthors.map((name) => ({
+					'@type': 'Person',
+					name
+				})),
+				isPartOf: {
+					'@type': 'PublicationVolume',
+					name: 'ICML 2026'
+				}
+			}
+		]
+	};
 </script>
 
-<div>
-	<section>
-		<h1>Education</h1>
-		<ul>
-			{#each cvData.education as edu}
-				<li class="grid grid-cols-1 gap-4 md:grid-cols-3">
-					<div class="md:col-span-2">
-						<h2>{edu.institution}</h2>
-						<p>{edu.degree}</p>
-						{#if edu.details}
-							<p>{edu.details}</p>
-						{/if}
-					</div>
-					<div class="text-right">
-						<p>from {edu.startDate}</p>
-						<p>to {edu.endDate}</p>
-					</div>
-				</li>
-			{/each}
-		</ul>
-	</section>
+<svelte:head>
+	<title>Cem Sirin | PhD Student in Data Science</title>
+	<meta
+		name="description"
+		content="Cem Sirin is a PhD student at Sapienza University of Rome advised by Stefano Leonardi, working around algorithmic game theory, machine learning, matching, and econometrics."
+	/>
+	<link rel="canonical" href={siteUrl} />
+	<meta property="og:type" content="profile" />
+	<meta property="og:title" content="Cem Sirin | PhD Student in Data Science" />
+	<meta
+		property="og:description"
+		content="Personal website of Cem Sirin, PhD student at Sapienza University of Rome advised by Stefano Leonardi."
+	/>
+	<meta property="og:url" content={siteUrl} />
+	<meta property="og:image" content={avatarUrl} />
+	<meta name="twitter:card" content="summary" />
+	<meta name="twitter:image" content={avatarUrl} />
+	{@html `<script type="application/ld+json">${JSON.stringify(jsonLd).replace(/</g, '\\u003c')}</script>`}
+</svelte:head>
 
-	<section>
-		<h1>Experience</h1>
-		<ul>
-			{#each cvData.experience as exp}
-				<li class="grid grid-cols-1 gap-4 md:grid-cols-3">
-					<div class="md:col-span-2">
-						<div class="flex flex-wrap items-center gap-2">
-							<h2>{exp.title}</h2>
-							{#each exp.technologies as tech}
-								<Badge variant="secondary">
-									<img src={`/icons/${tech}.svg`} alt={getToolLabel(tech)} class="h-3 w-3" />
-								</Badge>
-							{/each}
-						</div>
+<main class="flex flex-col gap-12 py-10 md:py-16">
+	<section class="space-y-6">
+		<div class="flex items-center gap-3">
+			<img
+				src={avatarSrc}
+				alt="Cem Şirin"
+				class="size-11 rounded-full border bg-muted object-cover"
+				width="44"
+				height="44"
+			/>
+			<div>
+				<p class="text-sm font-semibold">cem</p>
+				<p class="text-xs text-muted-foreground">posted from roma</p>
+			</div>
+		</div>
 
-						<p>{exp.description}</p>
-						{#if exp.link}
-							<a href={exp.link.url} target="_blank" rel="noopener noreferrer">{exp.link.text}</a>
-						{/if}
-					</div>
-					<div class="text-right">
-						<p>from {exp.startDate}</p>
-						<p>to {exp.endDate}</p>
-					</div>
-				</li>
-			{/each}
-		</ul>
-	</section>
+		<div class="space-y-4 text-base leading-7 text-muted-foreground md:text-lg md:leading-8">
+			<p>
+				I am a PhD student at Sapienza University of Rome, advised by
+				<a
+					href="https://sites.google.com/a/uniroma1.it/stefanoleonardi-eng/home"
+					target="_blank"
+					rel="noopener noreferrer"
+					class="text-foreground underline underline-offset-4">Stefano Leonardi</a
+				>.
+			</p>
+			<p>
+				My research interests sit around algorithmic game theory, machine learning, matching,
+				econometrics, and the design of decision systems that behave sensibly when incentives and
+				uncertainty get tangled together.
+			</p>
+		</div>
 
-	<section>
-		<h1>Projects</h1>
-		<ul>
-			{#each cvData.projects as project}
-				<li class="grid grid-cols-1 gap-4 md:grid-cols-3">
-					<div class="md:col-span-2">
-						<div class="flex flex-wrap items-center gap-2">
-							<h2>{project.name}</h2>
-							{#each project.technologies as tech}
-								<Badge variant="secondary">
-									<img src={`/icons/${tech}.svg`} alt={getToolLabel(tech)} class="h-3 w-3" />
-								</Badge>
-							{/each}
-						</div>
-						<p>{project.description}</p>
-						{#if project.link}
-							<a href={project.link.url} target="_blank" rel="noopener noreferrer"
-								>{project.link.text}</a
-							>
-						{/if}
-					</div>
-					<div class="text-right">
-						<p>{project.date}</p>
-					</div>
-				</li>
-			{/each}
-		</ul>
-	</section>
-
-	<section>
-		<h1>Tools & Skills</h1>
-		<div class="grid grid-rows-3 gap-2">
-			{#each [{ label: 'Tools', value: cvData.toolsSection.tools, type: 'tools' }, { label: 'Skills', value: cvData.toolsSection.skills, type: 'text' }, { label: 'Languages', value: cvData.toolsSection.languages, type: 'text' }] as item}
-				<div class="grid grid-cols-1 gap-2 md:grid-cols-5">
-					<div class="md:col-span-1 md:text-right">
-						<h2>{item.label}:</h2>
-					</div>
-					<div class="md:col-span-4">
-						{#if item.type === 'tools'}
-							<div class="flex flex-wrap gap-1">
-								{#each item.value as tool}
-									<Badge variant="secondary">
-										<img src={`/icons/${tool}.svg`} alt={getToolLabel(tool)} class="h-3 w-3" />
-										<p>{getToolLabel(tool)}</p>
-									</Badge>
-								{/each}
-							</div>
-						{:else if item.type === 'text' && Array.isArray(item.value)}
-							<p>{item.value.join(', ')}</p>
-						{:else}
-							<p>{item.value}</p>
-						{/if}
-					</div>
-				</div>
-			{/each}
+		<div class="flex flex-wrap gap-3 pt-1">
+			<Button href="/cv" variant="default">
+				<FileText class="h-4 w-4" />
+				CV
+			</Button>
+			<Button href="/blog" variant="outline">
+				<Newspaper class="h-4 w-4" />
+				Blog
+			</Button>
 		</div>
 	</section>
-</div>
 
-<style>
-	section {
-		margin-bottom: 2rem;
-	}
-	h1 {
-		font-size: var(--text-lg);
-		margin-bottom: 1rem;
-	}
-
-	h2 {
-		font-weight: bold;
-		font-size: var(--text-sm);
-	}
-
-	p {
-		font-size: var(--text-sm);
-		color: var(--color-muted-foreground);
-	}
-	a {
-		font-size: var(--text-sm);
-		color: var(--color-blue-300);
-	}
-
-	li {
-		margin-bottom: 1rem;
-	}
-</style>
+	<section class="space-y-4 border-t pt-8">
+		<h2 class="text-sm font-semibold tracking-[0.16em] text-muted-foreground uppercase">
+			Publication
+		</h2>
+		<article class="space-y-2">
+			<p class="text-xs text-muted-foreground">ICML 2026</p>
+			<h3 class="text-lg leading-snug font-semibold">Multicalibration Yields Better Matchings</h3>
+			<p class="text-sm leading-6 text-muted-foreground">
+				{publicationAuthorsBeforeMe}{', '}<span class="text-foreground">Cem Sirin</span
+				>{', and '}{publicationAuthorsAfterMe}
+			</p>
+			<a
+				href={publicationUrl}
+				target="_blank"
+				rel="noopener noreferrer"
+				class="inline-flex items-center gap-2 text-sm font-medium text-blue-600 hover:underline dark:text-blue-300"
+			>
+				ICML poster page
+				<ExternalLink class="h-4 w-4" />
+			</a>
+		</article>
+	</section>
+</main>
