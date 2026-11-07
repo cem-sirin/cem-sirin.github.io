@@ -1,0 +1,9 @@
+---
+title: Bu Bağda Dolanısan (Kurbanam Han Gözüve), work in progress
+date: 2026-11-07
+description: Work in progress arrangement of a Kerkük türküsü.
+---
+
+<audio controls preload="metadata" src="/music/kerkuk-after-midnight.m4a" style="width: 100%;"></audio>
+
+Work in progress.
